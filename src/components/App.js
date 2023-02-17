@@ -8,6 +8,7 @@ import env from "react-dotenv"
 const tmdbKey = env.REACT_APP_API_KEY;
 const MOVIE_API_URL = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbKey}`;
 const query = "Kiki's delivery service"
+
 // const initialState = {
 //   loading: true,
 //   movies: [],
@@ -68,11 +69,11 @@ const App = () => {
     fetch(`${MOVIE_API_URL}&query=${searchValue}`)
       .then(response => response.json())
       .then(jsonResponse => {
-        if (jsonResponse.Response === "True") {
+        if (jsonResponse.results.length > 0) {
           setMovies(jsonResponse.results);
           setLoading(false);
         } else {
-          setErrorMessage(jsonResponse.Error);
+          setErrorMessage("No results.");
           setLoading(false);
         }
       });
@@ -83,13 +84,15 @@ const App = () => {
     <div className="App">
       <Header text="HOOKED" />
       <Search search={search} />
-      <p className="App-intro">Sharing a few of our favourite movies</p>
+      <p className="App-intro">
+        {!loading && !errorMessage ? "Here's some cool movies:" : ""}
+      </p>
       <div className="movies">
         {loading && !errorMessage ? (
           <span>loading...</span>
           ) : errorMessage ? (
-          <div className="errorMessage">{errorMessage}</div>
-        ) : (
+            <div className="errorMessage">{errorMessage}</div>
+            ) : (
           movies.map((movie, index) => (
             <Movie key={`${index}-${movie.title}`} movie={movie} />
           ))

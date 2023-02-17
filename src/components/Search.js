@@ -15,14 +15,15 @@ export const Search = (props) => {
   }
 
   // calls the state update function (setSearchValue) with an empty string in order to clear the input field.
-  const resetInputField = () => {
-    setSearchValue("");
-  }
+  // const resetInputField = () => {
+  //   setSearchValue("");
+  // }
 
   const callSearchFunction = (e) => {
     e.preventDefault();
     props.search(searchValue);
-    resetInputField();
+    // resetInputField();
+    setSearchValue(searchValue)
   }
 
   return (
