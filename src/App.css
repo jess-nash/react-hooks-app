@@ -55,6 +55,10 @@
   max-width: 25%;
 }
 
+.poster {
+  max-width: 200px;
+}
+
 .errorMessage {
   margin: auto;
   font-weight: bold;
