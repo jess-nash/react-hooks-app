@@ -31,16 +31,19 @@ a {
 a:hover {
   color: blueviolet;
 }
-/* new css for movie component */
-
 * {
   box-sizing: border-box;
 }
 
+/* new css for movie component */
 .movies {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+
+.movie h1 {
+  font-size: calc(15px + 1vmin);
 }
 
 .App-header h2 {

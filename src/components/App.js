@@ -1,4 +1,4 @@
-import '../App.css';
+import '../stylesheets/App.scss';
 import React, { useState, useEffect } from 'react';
 import { Header } from './Header'
 import { Movie } from './Movie';

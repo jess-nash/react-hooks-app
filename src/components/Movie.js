@@ -16,7 +16,7 @@ const DEFAULT_PLACEHOLDER_IMAGE =
         <div>
           <img src={poster} alt={`The movie titled: ${movie.title}`} className="poster" />
         </div>
-        <p>{movie.release_date}</p>
+        {/* <p>{movie.release_date}</p> */}
       </div>
     )
 }
