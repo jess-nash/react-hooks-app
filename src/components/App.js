@@ -82,7 +82,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header text="HOOKED" />
+      <Header text="Flick Finder" />
       <Search search={search} />
       <p className="App-intro">
         {!loading && !errorMessage ? "Here's some cool movies:" : ""}
