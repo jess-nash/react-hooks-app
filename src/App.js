@@ -1,45 +1,14 @@
-import '../stylesheets/App.scss';
+import './stylesheets/App.scss';
 import React, { useState, useEffect } from 'react';
-import { Header } from './Header'
-import { Movie } from './Movie';
-import { Search } from './Search';
+import { NavBar } from './components/NavBar'
+import { Movie } from './components/Movie';
+import { Search } from './components/Search';
 import env from "react-dotenv"
 
 const tmdbKey = env.REACT_APP_API_KEY;
-const MOVIE_API_URL = `https://api.themoviedb.org/3/search/movie?api_key=${tmdbKey}`;
-const query = "Kiki's delivery service"
-
-// const initialState = {
-//   loading: true,
-//   movies: [],
-//   errorMessage: null
-// };
-
-
-// const reducer = (state, action) => {
-//   switch (action.type) {
-//     case "SEARCH_MOVIES_REQUEST":
-//       return {
-//         ...state,
-//         loading: true,
-//         errorMessage: null
-//       };
-//     case "SEARCH_MOVIES_SUCCESS":
-//       return {
-//         ...state,
-//         loading: false,
-//         movies: action.payload
-//       };
-//     case "SEARCH_MOVIES_FAILURE":
-//       return {
-//         ...state,
-//         loading: false,
-//         errorMessage: action.error
-//       };
-//     default:
-//       return state;
-//   }
-// };
+const baseURL = "https://api.themoviedb.org/3"
+const searchURL = `${baseURL}/search/movie?api_key=${tmdbKey}`;
+// const query = "Kiki's delivery service"
 
 const App = () => {
   // renders a ‘loading…’ text when loading is set to true
@@ -54,7 +23,7 @@ const App = () => {
   // This hook basically lets you perform side effects in your function components.
   // Side effects, e.g. data fetching, subscriptions, and manual DOM manipulations.
   useEffect(() => {
-    fetch(`${MOVIE_API_URL}&query=${query}`)
+    fetch(`${baseURL}/movie/popular?api_key=${tmdbKey}`)
       .then(response => response.json())
       .then(jsonResponse => {
         setMovies(jsonResponse.results);
@@ -66,7 +35,7 @@ const App = () => {
     setLoading(true);
     setErrorMessage(null);
 
-    fetch(`${MOVIE_API_URL}&query=${searchValue}`)
+    fetch(`${searchURL}&query=${searchValue}`)
       .then(response => response.json())
       .then(jsonResponse => {
         if (jsonResponse.results.length > 0) {
@@ -82,7 +51,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header text="Flick Finder" />
+      <NavBar text="Flick Finder" />
       <Search search={search} />
       <p className="App-intro">
         {!loading && !errorMessage ? "Here's some cool movies:" : ""}
