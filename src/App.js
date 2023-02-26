@@ -1,14 +1,14 @@
 import './stylesheets/App.scss';
 import React, { useState, useEffect } from 'react';
 import { NavBar } from './components/NavBar'
-import { Movie } from './components/Movie';
-import { Search } from './components/Search';
+// import { MovieCard } from './components/MovieCard';
+// import { Search } from './components/Search';
+import { Movies } from './components/Movies';
 import env from "react-dotenv"
 
 const tmdbKey = env.REACT_APP_API_KEY;
 const baseURL = "https://api.themoviedb.org/3"
 const searchURL = `${baseURL}/search/movie?api_key=${tmdbKey}`;
-// const query = "Kiki's delivery service"
 
 const App = () => {
   // renders a ‘loading…’ text when loading is set to true
@@ -51,22 +51,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <NavBar text="Flick Finder" />
-      <Search search={search} />
+      <NavBar search={search}/>
       <p className="App-intro">
         {!loading && !errorMessage ? "Here's some cool movies:" : ""}
       </p>
-      <div className="movies">
-        {loading && !errorMessage ? (
-          <span>loading...</span>
-          ) : errorMessage ? (
-            <div className="errorMessage">{errorMessage}</div>
-            ) : (
-          movies.map((movie, index) => (
-            <Movie key={`${index}-${movie.title}`} movie={movie} />
-          ))
-        )}
-      </div>
+      <Movies movies={movies} errorMessage={errorMessage}/>
     </div>
   );
 }

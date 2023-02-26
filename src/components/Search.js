@@ -6,12 +6,12 @@
 
 import React, { useState } from "react";
 
-export const Search = (props) => {
+export const Search = ({ search }) => {
   const [searchValue, setSearchValue] = useState("");
 
   // calls the state update function with the new value.
-  const handleUserInputChanges = (e) => {
-    setSearchValue(e.target.value);
+  const handleUserInputChanges = ({target}) => {
+    setSearchValue(target.value);
   }
 
   // calls the state update function (setSearchValue) with an empty string in order to clear the input field.
@@ -21,8 +21,7 @@ export const Search = (props) => {
 
   const callSearchFunction = (e) => {
     e.preventDefault();
-    props.search(searchValue);
-    // resetInputField();
+    search(searchValue);
     setSearchValue(searchValue)
   }
 
