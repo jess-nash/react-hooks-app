@@ -19,10 +19,6 @@
   margin: auto;
 }
 
-.App-intro {
-  font-size: large;
-}
-
 a {
   text-decoration: none;
   color: black;
@@ -84,6 +80,9 @@ a:hover {
   margin-top: 10px;
 }
 
+.search {
+  margin-left: auto;
+}
 
 input[type="submit"] {
   padding: 5px;
